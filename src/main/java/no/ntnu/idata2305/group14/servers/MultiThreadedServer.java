@@ -3,14 +3,16 @@ package no.ntnu.idata2305.group14.servers;
 import no.ntnu.idata2305.group14.computation.AsyncSearchSimulator;
 
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class MultiThreadedServer implements Runnable {
 
     protected int serverPort = 8080;
     protected ServerSocket serverSocket = null;
+    protected Socket clientSocket;
     protected boolean isStopped = false;
 
-    public SingleThreadedServer(int port) {
+    public MultiThreadedServer(int port) {
         this.serverPort = port;
     }
 
