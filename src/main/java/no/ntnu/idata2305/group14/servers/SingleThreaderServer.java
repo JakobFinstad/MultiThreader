@@ -1,6 +1,8 @@
 package no.ntnu.idata2305.group14.servers;
 
+import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class SingleThreaderServer {
     protected int serverPort = 8080;
@@ -31,6 +33,11 @@ public class SingleThreaderServer {
     }
 
     private void openServerSocket() {
-        // open server socket here
+        try {
+            serverSocket = new ServerSocket(serverPort);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
