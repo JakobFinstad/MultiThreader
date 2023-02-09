@@ -17,11 +17,26 @@ public class SingleThreaderServer {
         openServerSocket();
 
         while (!isStopped()) {
-            // wait for a connection
-            // on receiving a request, execute the heavy computation
+            Socket clientSocket = null;
+            try {
+                clientSocket = this.serverSocket.accept();
+            } catch (IOException e) {
+                if (isStopped()) {
+                    System.out.println("Server stopped!");
+                    return;
+                }
+                throw new RuntimeException("Error", e);
+            }
+            try {
+                processClientRequest(clientSocket);
+            } catch (Exception e) {
+            }
         }
 
         System.out.println("Server Stopped.");
+    }
+
+    private void processClientRequest(Socket clientSocket) {
     }
 
     private synchronized boolean isStopped() {
