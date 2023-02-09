@@ -52,6 +52,7 @@ public class SingleThreaderServer {
 
     public synchronized void stop() {
         // implementation to stop the server from the main thread if needed
+        System.exit(0);
     }
 
     private void openServerSocket() {
