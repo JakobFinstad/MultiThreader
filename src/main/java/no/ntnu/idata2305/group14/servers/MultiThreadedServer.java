@@ -53,8 +53,11 @@ public class MultiThreadedServer implements Runnable {
         // implementation to stop the server from the main thread if needed
     }
 
-    private void openServerSocket() throws IOException {
-        // open server socket her
-         serverSocket = new ServerSocket(serverPort);
+    private void openServerSocket() {
+        try {
+            serverSocket = new ServerSocket(serverPort);
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 }
