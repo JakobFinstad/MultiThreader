@@ -1,5 +1,7 @@
 package no.ntnu.idata2305.group14.servers;
 
+import no.ntnu.idata2305.group14.computation.SearchingSimulator;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -36,7 +38,12 @@ public class SingleThreaderServer {
         System.out.println("Server Stopped.");
     }
 
-    private void processClientRequest(Socket clientSocket) {
+    private void processClientRequest(Socket clientSocket) throws Exception {
+        try {
+            SearchingSimulator.processClientRequest(clientSocket, "hei");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private synchronized boolean isStopped() {
