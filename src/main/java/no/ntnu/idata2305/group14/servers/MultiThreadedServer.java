@@ -2,6 +2,7 @@ package no.ntnu.idata2305.group14.servers;
 
 import no.ntnu.idata2305.group14.computation.AsyncSearchSimulator;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -43,6 +44,10 @@ public class MultiThreadedServer implements Runnable {
     }
 
     private void openServerSocket() {
-        // open server socket here
+        try {
+            serverSocket = new ServerSocket(serverPort);
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 }
