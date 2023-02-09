@@ -4,6 +4,7 @@ import no.ntnu.idata2305.group14.utils.ResponseGenerator;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class SearchingSimulator {
@@ -16,5 +17,7 @@ public class SearchingSimulator {
 
         String httpBody = ResponseGenerator.generatorResponseHTML(time1,time2);
         String httpHeader = ResponseGenerator.generatorResponseHeader(httpBody.length());
+
+        new PrintWriter(socket.getOutputStream(), true).println(httpHeader + httpBody);
     }
 }
