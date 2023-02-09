@@ -2,6 +2,7 @@ package no.ntnu.idata2305.group14.servers;
 
 import no.ntnu.idata2305.group14.computation.AsyncSearchSimulator;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,18 +18,28 @@ public class MultiThreadedServer implements Runnable {
     }
 
     public void run() {
-        openServerSocket();
+        try {
+            openServerSocket();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
         while (!isStopped()) {
+            try {
             // wait for a connection
-
+            clientSocket = serverSocket.accept();
             // on receiving a request, execute the heavy computation in a new thread
-            new Thread(
-                    new AsyncSearchSimulator(
-                            clientSocket,
-                            "Multithreaded Server"
-                    )
-            ).start();
+
+                new Thread(
+                        new AsyncSearchSimulator(
+                                clientSocket,
+                                "Multithreaded Server"
+                        )
+                ).start();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
         System.out.println("Server Stopped.");
@@ -42,7 +53,8 @@ public class MultiThreadedServer implements Runnable {
         // implementation to stop the server from the main thread if needed
     }
 
-    private void openServerSocket() {
-        // open server socket here
+    private void openServerSocket() throws IOException {
+        // open server socket her
+         serverSocket = new ServerSocket(serverPort);
     }
 }

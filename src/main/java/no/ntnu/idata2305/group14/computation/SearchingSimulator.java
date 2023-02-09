@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class SearchingSimulator {
-    public static void processClientRequest(Socket socket, String title) throws Exception {
+    public static void processClientRequest(Socket socket) throws Exception {
         long time1 = System.currentTimeMillis();
         System.out.println("Request processing started at: " + time1);
         Thread.sleep(10 * 1000);

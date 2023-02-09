@@ -40,7 +40,7 @@ public class SingleThreaderServer {
 
     private void processClientRequest(Socket clientSocket) throws Exception {
         try {
-            SearchingSimulator.processClientRequest(clientSocket, "hei");
+            SearchingSimulator.processClientRequest(clientSocket);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

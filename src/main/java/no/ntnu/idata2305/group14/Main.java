@@ -6,7 +6,7 @@ import no.ntnu.idata2305.group14.servers.SingleThreaderServer;
 
 public class Main {
 
-    private static boolean singleThreadMode = true;
+    private static boolean singleThreadMode = false;
 
     private static int serverPort = 8080;
 
